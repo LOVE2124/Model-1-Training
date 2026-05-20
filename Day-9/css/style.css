@@ -1,0 +1,275 @@
+/* ============================================================
+   style.css - Custom CSS for Portfolio Website
+   This file handles:
+   - Smooth scrolling
+   - Hero section background gradient
+   - Dark mode styles
+   - Skill badge styling
+   - Project card hover effect
+   - Scroll-to-top button
+   - Section title underline
+   - Navbar and footer colors
+============================================================ */
+
+
+/* ---- SMOOTH SCROLLING ----
+   When user clicks a nav link like #about,
+   the page scrolls smoothly instead of jumping */
+html {
+    scroll-behavior: smooth;
+}
+
+
+/* ---- BODY BASE STYLE ---- */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #222;
+    transition: background-color 0.3s, color 0.3s; /* smooth dark mode switch */
+}
+
+
+/* ---- NAVBAR ---- */
+#mainNavbar {
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Nav link hover color */
+.nav-link:hover {
+    color: #0d6efd !important;
+}
+
+
+/* ---- HERO SECTION ----
+   Linear gradient background from blue to purple
+   Full viewport height so it fills the screen */
+.hero-section {
+    background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+    min-height: 100vh;                /* 100% of screen height */
+    display: flex;
+    align-items: center;             /* vertically center content */
+    justify-content: center;
+}
+
+/* Professional circular photo in hero section */
+.hero-photo {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;           /* crops image to fill the circle */
+    border-radius: 50%;          /* makes it a perfect circle */
+    border: 4px solid #fde047;   /* yellow border matching hero accent */
+    box-shadow: 0 0 20px rgba(253, 224, 71, 0.4); /* soft yellow glow */
+    animation: fadeInDown 1s ease-in-out;
+}
+
+/* Hero title fade-in animation */
+.hero-title {
+    animation: fadeInDown 1s ease-in-out;
+}
+
+/* CSS Animation: title slides down and fades in */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px); /* start 30px above */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);     /* end at normal position */
+    }
+}
+
+
+/* ---- SECTION TITLE ----
+   Adds a colored underline below each section heading */
+.section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+/* The underline is created using ::after pseudo-element */
+.section-title::after {
+    content: '';                      /* empty content, just a line */
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);     /* center the underline */
+    width: 60px;
+    height: 4px;
+    background-color: #0d6efd;       /* blue underline */
+    border-radius: 2px;
+}
+
+
+/* ---- ALTERNATING SECTION BACKGROUND ----
+   Light gray background for alternate sections */
+.section-bg {
+    background-color: #f0f4ff;
+}
+
+
+/* ---- ABOUT & EDUCATION CARD ---- */
+.about-card,
+.education-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+}
+
+
+/* ---- SKILL BADGES ----
+   Small colored tags for each skill */
+.skill-badge {
+    display: inline-block;
+    background-color: #dbeafe;       /* light blue */
+    color: #1d4ed8;                  /* dark blue text */
+    padding: 4px 12px;
+    border-radius: 20px;             /* pill shape */
+    font-size: 0.85rem;
+    margin: 4px 2px;
+    font-weight: 500;
+    transition: transform 0.2s;      /* smooth hover effect */
+}
+
+/* Hover: badge slightly grows */
+.skill-badge:hover {
+    transform: scale(1.1);
+}
+
+/* Green variant for programming skills */
+.skill-badge.green {
+    background-color: #dcfce7;
+    color: #15803d;
+}
+
+/* Yellow variant for database skills */
+.skill-badge.yellow {
+    background-color: #fef9c3;
+    color: #a16207;
+}
+
+/* Purple variant for tools */
+.skill-badge.purple {
+    background-color: #f3e8ff;
+    color: #7e22ce;
+}
+
+
+/* ---- SKILL CARD HOVER ---- */
+.skill-card {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);     /* lifts up on hover */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+
+/* ---- PROJECT CARDS ---- */
+.project-card {
+    border: none;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-6px);     /* lifts up on hover */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15) !important;
+}
+
+
+/* ---- CONTACT CARD ---- */
+.contact-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+}
+
+
+/* ---- FOOTER ---- */
+.footer-section {
+    background-color: #1a1a2e;
+}
+
+
+/* ---- SCROLL TO TOP BUTTON ----
+   Fixed button at bottom-right corner of screen */
+#scrollTopBtn {
+    position: fixed;       /* stays in place while scrolling */
+    bottom: 30px;
+    right: 30px;
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+    border-radius: 50%;    /* circle shape */
+    width: 48px;
+    height: 48px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: none;         /* hidden by default, shown by JavaScript */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s, transform 0.2s;
+    z-index: 999;          /* always on top of other elements */
+}
+
+#scrollTopBtn:hover {
+    background-color: #0b5ed7;
+    transform: scale(1.1);
+}
+
+
+/* ============================================================
+   DARK MODE STYLES
+   When <html> has class "dark-mode", these styles apply.
+   JavaScript adds/removes "dark-mode" class on toggle.
+============================================================ */
+
+.dark-mode body {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.dark-mode #mainNavbar {
+    background-color: #1e1e1e !important;
+    box-shadow: 0 2px 10px rgba(255, 255, 255, 0.05);
+}
+
+.dark-mode .nav-link {
+    color: #cccccc !important;
+}
+
+.dark-mode .section-bg {
+    background-color: #1a1a2a;
+}
+
+.dark-mode .about-card,
+.dark-mode .education-card,
+.dark-mode .contact-card {
+    background-color: #1e1e2e;
+    border-color: #333;
+    color: #e0e0e0;
+}
+
+.dark-mode .card {
+    background-color: #1e1e2e;
+    color: #e0e0e0;
+}
+
+.dark-mode .form-control {
+    background-color: #2a2a3e;
+    color: #e0e0e0;
+    border-color: #444;
+}
+
+.dark-mode .form-control::placeholder {
+    color: #888;
+}
+
+.dark-mode .bg-blue-50,
+.dark-mode .bg-green-50,
+.dark-mode .bg-yellow-50,
+.dark-mode .bg-purple-50 {
+    background-color: #1e1e2e !important;
+}
