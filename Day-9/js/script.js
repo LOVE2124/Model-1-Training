@@ -5,7 +5,40 @@
 // 2. Contact Form Validation
 // 3. Show / Hide Project Details
 // 4. Scroll To Top Button
+// 5. Navbar Toggle (Mobile)
 // ============================================================
+
+
+// ============================================================
+// FEATURE 0: NAVBAR TOGGLE FOR MOBILE
+// Manually handle navbar collapse to avoid Bootstrap/Tailwind conflicts
+// ============================================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const navbarCollapse = document.querySelector('.navbar-collapse');
+    
+    if (navbarToggler && navbarCollapse) {
+        navbarToggler.addEventListener('click', function() {
+            // Toggle the 'show' class
+            if (navbarCollapse.classList.contains('show')) {
+                navbarCollapse.classList.remove('show');
+            } else {
+                navbarCollapse.classList.add('show');
+            }
+        });
+        
+        // Close menu when clicking on a nav link
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(function(link) {
+            link.addEventListener('click', function() {
+                if (window.innerWidth < 992) {
+                    navbarCollapse.classList.remove('show');
+                }
+            });
+        });
+    }
+});
 
 
 // ============================================================
@@ -127,6 +160,40 @@ function toggleDetails(detailsId, btn) {
         btn.textContent = "Show Details";           // reset button text
         btn.classList.remove("btn-primary");
         btn.classList.add("btn-outline-primary");   // reset button color
+
+    }
+}
+
+
+// ============================================================
+// FEATURE 3B: SHOW / HIDE PROJECT DEMO (IFRAME)
+//
+// How it works:
+// - When user clicks "Preview" button, this shows/hides iframe
+// - Toggles between "Preview" and "Hide Preview" text
+// ============================================================
+
+function showProjectDemo(demoId, btn) {
+
+    // Find the demo iframe div by its id
+    const demoDiv = document.getElementById(demoId);
+
+    // Check current visibility
+    if (demoDiv.style.display === "none") {
+
+        // Currently hidden → show it
+        demoDiv.style.display = "block";
+        btn.textContent = "🙈 Hide Preview";        // change button text
+        btn.classList.remove("btn-outline-info");
+        btn.classList.add("btn-info");              // change button color
+
+    } else {
+
+        // Currently visible → hide it
+        demoDiv.style.display = "none";
+        btn.textContent = "👁️ Preview";             // reset button text
+        btn.classList.remove("btn-info");
+        btn.classList.add("btn-outline-info");      // reset button color
 
     }
 }

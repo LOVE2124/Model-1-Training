@@ -10,8 +10,16 @@
 
     <!-- ✅ Tailwind CSS CDN - for utility classes like padding, margin, shadow, rounded, text size -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Configure Tailwind to not interfere with Bootstrap
+        tailwind.config = {
+            corePlugins: {
+                preflight: false,
+            }
+        }
+    </script>
 
-    <!-- ✅ Custom CSS -->
+    <!-- ✅ Custom CSS - MUST load after Tailwind -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -26,11 +34,12 @@
         <div class="container">
 
             <!-- Brand / Logo Name -->
-            <a class="navbar-brand fw-bold text-primary" href="#home">SA</a>
+            <a class="navbar-brand fw-bold" href="#home">SA</a>
 
             <!-- Mobile Toggle Button (hamburger icon) -->
             <button class="navbar-toggler" type="button"
-                data-bs-toggle="collapse" data-bs-target="#navMenu">
+                data-bs-toggle="collapse" data-bs-target="#navMenu"
+                aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -72,27 +81,29 @@
             <img src="pasportsize photo.jpeg" alt="Shubham Agarwal" class="hero-photo mb-4">
 
             <!-- Tailwind: text-5xl = large font, font-bold = bold, text-white = white color -->
-            <h1 class="text-5xl font-bold text-white mb-4 hero-title">
+            <h1 class="text-5xl md:text-5xl sm:text-3xl font-bold text-white mb-4 hero-title">
                 Hi, I am <span class="text-yellow-300">Shubham Agarwal</span> 👋
             </h1>
 
             <!-- Tailwind: text-2xl = medium-large font -->
-            <p class="text-2xl text-white mb-2">Computer Science Student</p>
+            <p class="text-2xl md:text-2xl sm:text-xl text-white mb-2">Computer Science Student</p>
 
-            <p class="text-lg text-white mb-2 opacity-90">
+            <p class="text-lg md:text-lg sm:text-base text-white mb-2 opacity-90">
                 B.Tech Computer Science Engineering Student
             </p>
-            <p class="text-lg text-white mb-8 opacity-90">
+            <p class="text-lg md:text-lg sm:text-base text-white mb-8 opacity-90">
                 CPI: 8.47 | Data Science Enthusiast | Python | SQL | Power BI
             </p>
 
             <!-- Bootstrap Buttons -->
-            <a href="#projects" class="btn btn-warning btn-lg me-3 rounded-pill">
-                📁 View Projects
-            </a>
-            <a href="#contact" class="btn btn-outline-light btn-lg rounded-pill">
-                📩 Contact Me
-            </a>
+            <div class="d-flex flex-wrap justify-content-center gap-2">
+                <a href="#projects" class="btn btn-warning btn-lg rounded-pill">
+                    📁 View Projects
+                </a>
+                <a href="#contact" class="btn btn-outline-light btn-lg rounded-pill">
+                    📩 Contact Me
+                </a>
+            </div>
 
         </div>
     </section>
@@ -110,9 +121,9 @@
             <h2 class="text-center section-title mb-5">About Me</h2>
 
             <!-- Tailwind: shadow-lg = box shadow, rounded-2xl = rounded corners, p-8 = padding -->
-            <div class="shadow-lg rounded-2xl p-8 about-card mx-auto" style="max-width: 800px;">
+            <div class="shadow-lg rounded-2xl p-4 p-md-8 about-card mx-auto" style="max-width: 800px;">
 
-                <p class="text-lg leading-relaxed text-center">
+                <p class="text-base text-lg-lg leading-relaxed text-center">
                     B.Tech Computer Science Engineering student with a <strong>CPI of 8.47</strong> and zero backlogs, 
                     recently completed a 6-month <strong>Data Science course from Unlox</strong>. Skilled in 
                     <strong>Python, SQL, Excel</strong>, data cleaning, exploratory data analysis, and basic machine learning concepts. 
@@ -247,7 +258,7 @@
             <div class="row g-4">
 
                 <!-- Project Card 1: Student Performance Analysis -->
-                <div class="col-lg-6 col-md-6">
+                <div class="col-lg-4 col-md-6">
                     <div class="card h-100 project-card shadow-lg rounded-2xl">
                         <div class="card-body p-4">
                             <h5 class="card-title font-bold">📊 Student Performance Analysis</h5>
@@ -275,8 +286,51 @@
                     </div>
                 </div>
 
-                <!-- Project Card 2: Portfolio Website -->
-                <div class="col-lg-6 col-md-6">
+                <!-- Project Card 2: FOLK Life Event Management -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 project-card shadow-lg rounded-2xl">
+                        <div class="card-body p-4">
+                            <h5 class="card-title font-bold">🎉 FOLK Life Event Management</h5>
+                            <p class="text-sm text-gray-500 mb-2">
+                                <span class="badge bg-dark">Next.js</span>
+                                <span class="badge bg-info text-dark">TypeScript</span>
+                                <span class="badge bg-primary">Turso DB</span>
+                                <span class="badge bg-success">Tailwind</span>
+                                <span class="badge bg-warning text-dark">WhatsApp API</span>
+                            </p>
+                            <p class="card-text">Full-stack event management system with QR check-ins and WhatsApp integration.</p>
+
+                            <div id="details-2" class="project-details" style="display:none;">
+                                <hr>
+                                <p class="text-sm">Production-grade system handling 2000+ entries per event with real-time check-in tracking, automated WhatsApp QR code delivery, role-based access control, and Excel import/export. Built with Next.js 16, Turso SQLite, and Interakt WhatsApp API.</p>
+                                <div class="mt-3">
+                                    <a href="https://shubham-agrawal.site" target="_blank" class="btn btn-sm btn-primary me-2">
+                                        🔗 Visit Live Site
+                                    </a>
+                                    <button class="btn btn-sm btn-outline-info" onclick="showProjectDemo('demo-2', this)">
+                                        👁️ Preview
+                                    </button>
+                                </div>
+                                <!-- Embedded iframe demo -->
+                                <div id="demo-2" class="project-demo mt-3" style="display:none;">
+                                    <iframe src="https://shubham-agrawal.site" 
+                                            class="w-100 rounded" 
+                                            style="height: 400px; border: 2px solid #ddd;"
+                                            title="FOLK Life Event Management Demo">
+                                    </iframe>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-sm btn-outline-primary mt-2"
+                                onclick="toggleDetails('details-2', this)">
+                                Show Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 3: Portfolio Website -->
+                <div class="col-lg-4 col-md-6">
                     <div class="card h-100 project-card shadow-lg rounded-2xl">
                         <div class="card-body p-4">
                             <h5 class="card-title font-bold">🌐 Personal Portfolio Website</h5>
@@ -289,13 +343,13 @@
                             </p>
                             <p class="card-text">A responsive personal portfolio to showcase skills, projects, and experience.</p>
 
-                            <div id="details-2" class="project-details" style="display:none;">
+                            <div id="details-3" class="project-details" style="display:none;">
                                 <hr>
                                 <p class="text-sm">Built using HTML structure, CSS for styling, JavaScript for interactivity, Bootstrap for responsive layout, and Tailwind CSS for modern utility styling. Includes dark mode toggle and contact form validation.</p>
                             </div>
 
                             <button class="btn btn-sm btn-outline-primary mt-2"
-                                onclick="toggleDetails('details-2', this)">
+                                onclick="toggleDetails('details-3', this)">
                                 Show Details
                             </button>
                         </div>
@@ -437,8 +491,8 @@
             <div class="row justify-content-center">
                 
                 <!-- Contact Info -->
-                <div class="col-lg-5 col-md-6 mb-4">
-                    <div class="shadow-lg rounded-2xl p-6 contact-card h-100">
+                <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+                    <div class="shadow-lg rounded-2xl p-4 p-md-6 contact-card h-100">
                         <h4 class="font-bold mb-4">📞 Get In Touch</h4>
                         
                         <div class="mb-3">
@@ -485,7 +539,7 @@
 
                 <!-- Contact Form -->
                 <div class="col-lg-5 col-md-6">
-                    <div class="shadow-lg rounded-2xl p-6 contact-card">
+                    <div class="shadow-lg rounded-2xl p-4 p-md-6 contact-card">
 
                         <h4 class="font-bold mb-4">✉️ Send Message</h4>
 
